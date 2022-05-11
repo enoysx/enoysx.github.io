@@ -2,4 +2,4 @@
 
 This is my first simple portfolio
 
-[Portfolio](https://enoysx.github.io/ "Enoysx Portfolio")
+<a href="https://enoysx.github.io/" target="blank" alt="Enoysx Portfolio "> My Portfolio </a>
