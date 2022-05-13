@@ -1,0 +1,21 @@
+/* import fonts.css */
+@import url(fonts.css);
+
+/* root */
+
+:root {
+
+    /* Font family*/
+    --poppins : 'Poppins', sans-serif;
+    --abril : 'Abril Fatface', cursive;
+    --comforta : 'Comfortaa', cursive;
+    --righteous : 'Righteous', cursive;
+
+    /* Theme Color */
+
+    --theme-base : #1D2D50;
+    --theme-shade :#133B5C;
+    --theme-third : #1E5F74;
+    --theme-fourth : #FCDAB7;
+
+}

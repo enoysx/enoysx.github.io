@@ -1,0 +1,6 @@
+/* import rooting */
+@import url(root.css);
+
+.card {
+    background-color: rgba(var(--theme-third), 1) ;
+}
