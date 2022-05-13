@@ -2,5 +2,5 @@
 @import url(root.css);
 
 .card {
-    background-color: rgba(var(--theme-third), 1) ;
+    background-color: var(--theme-secondary) ;
 }

@@ -13,9 +13,9 @@
 
     /* Theme Color */
 
-    --theme-base : #1D2D50;
-    --theme-shade :#133B5C;
-    --theme-third : #1E5F74;
-    --theme-fourth : #FCDAB7;
+    --theme-primary : #0E050F;
+    --theme-secondary :#170B3B;
+    --theme-third : #341948;
+    --theme-fourth : #9388A2;
 
 }
