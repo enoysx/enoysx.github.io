@@ -1,6 +1,0 @@
-/* import rooting */
-@import url(root.css);
-
-.card {
-    background-color: var(--theme-secondary) ;
-}
