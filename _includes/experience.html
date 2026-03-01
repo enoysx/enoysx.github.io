@@ -14,7 +14,8 @@
     <h2 class="text-center mb-4">Experience</h2>
     <div class="timeline">
       {% for item in site.data.experience.experiences %}
-      <div class="timeline-item">
+      {% assign side = forloop.index0 | modulo: 2 %}
+      <div class="timeline-item {% if side == 1 %}timeline-item--right{% else %}timeline-item--left{% endif %}">
         <div class="timeline-content">
           <h3>{{ item.position }} <span class="text-muted">@ {{ item.company }}</span></h3>
           <div class="timeline-meta">
