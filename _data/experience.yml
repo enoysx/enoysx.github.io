@@ -4,7 +4,7 @@
 experiences:
   - company: "PT. Tirta Varia Inti Pratama"
     position: "Reporting & Data Analysis Staff"
-    period: "Januari 2022 – Present"
+    period: "Jan 2022 – Present"
     location: "Jakarta, Indonesia"
     type: "Full-time"
     description: "Responsible for comprehensive data management, reporting, and visualization to support strategic business decisions across multiple departments."
@@ -15,9 +15,21 @@ experiences:
       - "Established data validation protocols and quality assurance processes, reducing reporting errors by 95%"
       - "Trained 8+ team members on data analysis tools and best practices"
 
+  - company: "PT. Mitra Digital Indonesia"
+    position: "Junior Data Analyst"
+    period: "Aug 2021 – Jan 2022"
+    location: "Jakarta, Indonesia"
+    type: "Full-time"
+    description: "Supported data analysis and reporting for digital marketing campaigns and business intelligence initiatives."
+    achievements:
+      - "Analyzed campaign performance data and prepared weekly performance reports"
+      - "Collaborated with marketing team to identify optimization opportunities"
+      - "Developed SQL queries for data extraction and analysis"
+      - "Supported the transition to Google Analytics 4 implementation"
+
   - company: "Freelance Graphic Designer & Data Visualization Specialist"
-    position: "Founder / Client Services"
-    period: "Juni 2020 – Present"
+    position: "Graphic Designer & Data Visualization Specialist"
+    period: "Jun 2020 – Present"
     location: "Remote"
     type: "Self-employed"
     description: "Providing comprehensive graphic design and data visualization services for startups, SMEs, and corporate clients across various industries."
@@ -28,15 +40,3 @@ experiences:
       - "Produced data visualization reports and infographics for executive presentations"
       - "Managed complete project lifecycle from discovery through delivery and client support"
       - "Maintained long-term client relationships with repeat project rates exceeding 60%"
-
-  - company: "PT. Mitra Digital Indonesia"
-    position: "Junior Data Analyst"
-    period: "Agustus 2021 – Januari 2022"
-    location: "Jakarta, Indonesia"
-    type: "Full-time"
-    description: "Supported data analysis and reporting for digital marketing campaigns and business intelligence initiatives."
-    achievements:
-      - "Analyzed campaign performance data and prepared weekly performance reports"
-      - "Collaborated with marketing team to identify optimization opportunities"
-      - "Developed SQL queries for data extraction and analysis"
-      - "Supported the transition to Google Analytics 4 implementation"
