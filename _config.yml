@@ -1,6 +1,6 @@
 # _config.yml
 # Basic configuration for Jekyll site
-
+theme: jekyll-theme-minimal
 title: "Dandy Syahputra Portfolio"
 email: ""
 description: "Reporting, Analysis & Data Visualization Specialist"
