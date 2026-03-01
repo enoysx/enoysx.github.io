@@ -179,3 +179,73 @@ body{
 /* project card hover */
 .project-card{ transition: transform .25s ease, box-shadow .25s ease; }
 .project-card:hover{ transform: translateY(-6px); box-shadow: 0 12px 30px rgba(0,0,0,0.5); }
+
+/* gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, #00f0ff, #ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* glitch effect */
+@keyframes glitch-anim {
+  0% { clip-path: inset(0 0 0 0); transform: translate(0);
+  }
+  20% { clip-path: inset(0 0 10% 0);
+    transform: translate(-2px,2px);
+  }
+  40% { clip-path: inset(10% 0 0 0);
+    transform: translate(2px,-2px);
+  }
+  60% { clip-path: inset(0 10% 0 0);
+    transform: translate(-2px,-2px);
+  }
+  80% { clip-path: inset(0 0 0 10%);
+    transform: translate(2px,2px);
+  }
+  100% { clip-path: inset(0 0 0 0); transform: translate(0);
+  }
+}
+.glitch.do-glitch {
+  animation: glitch-anim 0.5s steps(2,end);
+}
+
+/* neon pulse for buttons */
+.btn-primary, .btn-outline {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after, .btn-outline::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  box-shadow: 0 0 8px var(--primary), 0 0 16px var(--primary);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn-primary:hover::after, .btn-outline:hover::after { opacity: 1; }
+
+/* vibe mode pacing via variable */
+:root {
+  --animation-speed: 1;
+}
+.vibe-hype { --animation-speed: 0.5; }
+.vibe-chill { --animation-speed: 2; }
+
+* { animation-duration: calc(var(--animation-speed) * 1s) !important; }
+
+/* particle canvas covers hero */
+#particle-canvas { display: block; }
+
+/* chat simulator styles */
+#ai-chat { padding: 2rem 0; }
+#chat-window div { margin-bottom: 0.5rem; }
+
+/* konami mode */
+.konami { filter: hue-rotate(180deg); }
+.konami #hero { animation: glitch-anim 1s infinite; }
+
+/* live coding widget small print */
+#live-coding { font-family: 'JetBrains Mono', monospace; }
+
+

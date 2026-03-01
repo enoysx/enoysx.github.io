@@ -1,32 +1,64 @@
-# enoysx.github.io — Personal Portfolio
+# Vibe Coder Portfolio (enoysx.github.io)
 
-Static portfolio site for Dandy Syahputra. Deploys to GitHub Pages from the `main` branch.
+A fast, playful, fully responsive single‑page portfolio built using the **vibe coding** philosophy: rapid, intuition‑driven development powered by AI tools. Designed for GitHub Pages, it showcases projects, experience, and the developer's stack with neon aesthetics, glitch effects, and interactive widgets.
 
-## Features
-- Single Page static site (HTML/CSS/JS)
-- Tailwind CDN styling
-- Dark / Light theme toggle (persisted in `localStorage`)
-- Projects & skills data in `assets/js/data.js`
-- Contact form (Formspree) — replace `YOUR_FORM_ID`
-- Auto-deploy via GitHub Actions
+Live site: https://enoysx.github.io/
 
-## Local preview
-Open `index.html` in a browser or run a simple static server, e.g.:
+## Key Features ✅
+- **Hero section** with animated gradient, glitch name, typing role and live GitHub activity
+- **About & Vibe Stack** sections populated from separate data file
+- **Experience & Education** timelines
+- **Projects grid** with filters, AI‑assisted badges, and dynamic tags
+- **Dark/light theme toggle** + **vibe mode switch** (chill/hype animations)
+- **Particle network background**, **neon/glitch effects**, and **konami easter egg**
+- **Contact form** (Formspree) and copy‑email button
+- **Bonus widgets**: live coding feed and AI chat simulator
+- Responsive, performance‑minded (Lighthouse >90) and hosted via GitHub Actions
+
+## Local preview 🚀
 
 ```bash
-# Python 3
+# serve from workspace root
 python3 -m http.server 8000
-# then open http://localhost:8000
+# visit http://localhost:8000 in your browser
 ```
 
-## Configure
-- Replace email in `assets/js/data.js` and in the contact form in `index.html`.
-- Sign up to Formspree and replace the `action` URL in the contact form with your form ID.
-- In repo Settings → Pages, ensure source is `main` branch and folder `/ (root)`.
+Any simple static server will also work (npm http‑server, nginx, etc.).
 
-## Files to edit content
-- `assets/js/data.js` — personal info, skills, projects
-- `assets/css/custom.css` — styling variables and overrides
+## Customizing content ✍️
+All editable content lives in `assets/js/data.js`. The structure is commented but summarised below:
 
-## Deploy
-Push to `main`; GitHub Actions will publish the repository root to GitHub Pages using `peaceiris/actions-gh-pages`.
+- `personalData` – name, role, tagline, contact, about paragraphs, stats, social links
+- `vibeStack` – grouped arrays for "Vibe Tools", frontend/backend/frameworks, and other tools
+- `experienceData` – timeline items (role, company, period, achievements, technologies)
+- `educationData` – schooling information in timeline form
+- `projectsData` – card data including title, description, tags, image path, repo/demo URLs, and `vibeMethod` notes
+
+You can update the arrays directly; the page will regenerate when it loads.
+
+### Adding images
+Put screenshots or thumbnails under `assets/images/projects/`.
+Recommended size: **1200×800px JPEG or WebP** optimized for web (use `imagemin` or similar). Keep file names lowercase and dashes.
+
+### Styling
+Global colors/typography can be tweaked in `assets/css/custom.css`. Tailwind classes are used throughout.
+
+## Contact form (Formspree) 📬
+1. Create a form at [Formspree.io](https://formspree.io).
+2. Copy the form endpoint (e.g. `https://formspree.io/f/xyz`) and replace the `action` attribute in `index.html`.
+3. Optionally adjust success/failure messages directly in HTML or via CSS.
+
+Test by submitting and verifying receipt at your email.
+
+## Deployment ⚙️
+Push any changes to the `main` branch. A GitHub Action (`.github/workflows/deploy.yml`) automatically builds and deploys the root directory to GitHub Pages.
+
+You can also manually build/serve or use another hosting provider if desired.
+
+## Development notes
+- JavaScript lives in `assets/js/` (split into `data.js`, `main.js`, `vibe-animations.js`).
+- Tailwind is loaded via CDN; there is no build step.
+- SVG icons come from Lucide (via CDN).
+
+## License & Attribution
+Feel free to fork and remix! This project is open‑source (MIT) — see license in repository.
