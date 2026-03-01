@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Placeholder Images</title>
+</head>
+<body>
+    <h1>Project Placeholder Images Generator</h1>
+    <p>Use this tool to generate placeholder SVG images for projects.</p>
+    
+    <script>
+        // Projects list
+        const projects = [
+            { name: "portfolio", title: "Portfolio" },
+            { name: "ecommerce", title: "E-Commerce" },
+            { name: "taskapp", title: "Task App" },
+            { name: "dashboard", title: "Dashboard" },
+            { name: "blog", title: "Blog" },
+            { name: "weather", title: "Weather" },
+            { name: "socialmedia", title: "Social Media" },
+            { name: "kalta", title: "KALTA" },
+            { name: "portfolio-design", title: "Portfolio Design" },
+            { name: "fitness", title: "Fitness" },
+            { name: "realestate", title: "Real Estate" },
+            { name: "music", title: "Music" }
+        ];
+
+        // Generate SVG for each project
+        projects.forEach(project => {
+            const svg = generatePlaceholder(project.title);
+            downloadSVG(svg, `${project.name}-thumb.svg`);
+        });
+
+        function generatePlaceholder(title) {
+            const colors = ["#3B82F6", "#8B5CF6", "#EC4899", "#F59E0B", "#10B981"];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            return `<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 1200 675" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="1200" height="675" fill="#FAFAFA"/>
+  
+  <!-- Gradient overlay -->
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:${color};stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:${color};stop-opacity:0.05" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#grad)"/>
+  
+  <!-- Border -->
+  <rect width="1200" height="675" fill="none" stroke="#E5E7EB" stroke-width="2"/>
+  
+  <!-- Icon area -->
+  <circle cx="600" cy="300" r="80" fill="${color}" opacity="0.2"/>
+  <circle cx="600" cy="300" r="60" fill="${color}" opacity="0.1"/>
+  
+  <!-- Text -->
+  <text x="600" y="420" font-family="Inter, sans-serif" font-size="48" font-weight="600" text-anchor="middle" fill="#0A0A0A">
+    ${title}
+  </text>
+  <text x="600" y="470" font-family="Inter, sans-serif" font-size="20" text-anchor="middle" fill="#525252">
+    Project Showcase
+  </text>
+</svg>`;
+        }
+
+        function downloadSVG(svg, filename) {
+            const blob = new Blob([svg], { type: 'image/svg+xml' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            // Note: Just creating, user needs to download manually
+            console.log(`Created: ${filename}`);
+        }
+    </script>
+
+    <p style="color: red;">
+        Note: Open browser console to see generated files.
+        Create them manually or use an online SVG generator service.
+    </p>
+</body>
+</html>
