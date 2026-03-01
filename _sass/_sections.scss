@@ -26,17 +26,40 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(124, 58, 237, 0.05) 0%, transparent 70%);
+    z-index: 0;
+  }
+  
+  > * {
+    position: relative;
+    z-index: 1;
+  }
   
   h1 {
     font-size: 2.5rem;
     color: var(--text-primary);
     margin-bottom: var(--space-md);
+    font-weight: 700;
+    line-height: var(--line-tight);
   }
   
   .lead {
     font-size: 1.5rem;
-    color: var(--primary-color);
-    font-weight: 600;
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
     margin-bottom: var(--space-sm);
   }
   
@@ -45,6 +68,7 @@
     color: var(--text-secondary);
     max-width: 600px;
     margin: 0 auto var(--space-md);
+    line-height: var(--line-relaxed);
   }
   
   .social {
@@ -62,12 +86,13 @@
       background-color: white;
       color: var(--primary-color);
       box-shadow: var(--shadow-md);
-      transition: all 0.3s ease;
+      transition: all var(--transition-base);
       
       &:hover {
-        transform: translateY(-5px);
-        background-color: var(--primary-color);
+        transform: translateY(-5px) rotate(5deg);
+        background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
         color: white;
+        box-shadow: var(--shadow-lg);
       }
     }
   }
@@ -109,17 +134,23 @@
 
 // Skills Section
 .skills-section {
-  background-color: var(--bg-secondary);
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--primary-light) 5%);
   
   h2 {
     text-align: center;
     margin-bottom: var(--space-2xl);
+    color: var(--text-primary);
+    font-size: 2.25rem;
   }
   
   h3 {
-    color: var(--primary-color);
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     margin-bottom: var(--space-lg);
     font-size: 1.3rem;
+    font-weight: 700;
   }
   
   ul {
@@ -127,17 +158,27 @@
     padding-left: 0;
     
     li {
-      padding: var(--space-sm) 0;
+      padding: var(--space-md) var(--space-md) var(--space-md) var(--space-lg);
       color: var(--text-secondary);
       position: relative;
-      padding-left: var(--space-lg);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-base);
+      background-color: var(--bg-primary);
+      margin-bottom: var(--space-sm);
+      line-height: var(--line-normal);
+      
+      &:hover {
+        background-color: var(--primary-light);
+        padding-left: var(--space-xl);
+      }
       
       &::before {
         content: "✓";
         position: absolute;
-        left: 0;
-        color: var(--primary-color);
-        font-weight: bold;
+        left: var(--space-md);
+        color: var(--secondary-color);
+        font-weight: 700;
+        font-size: 1.1rem;
       }
     }
   }
@@ -153,41 +194,78 @@
     
     .timeline-item {
       padding: var(--space-lg);
-      border-left: 4px solid var(--primary-color);
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.5), white);
+      border-left: 4px solid;
+      border-image: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%) 1;
       margin-bottom: var(--space-xl);
-      background-color: var(--bg-secondary);
       border-radius: var(--radius-md);
-      transition: all 0.3s ease;
+      transition: all var(--transition-base);
+      box-shadow: var(--shadow-sm);
       
       &:hover {
-        box-shadow: var(--shadow-md);
-        transform: translateX(5px);
+        box-shadow: var(--shadow-lg);
+        transform: translateX(8px);
+        background: linear-gradient(to right, rgba(229, 231, 235, 0.5), white);
       }
       
       h3 {
         margin: 0 0 var(--space-sm) 0;
         font-size: 1.3rem;
+        color: var(--text-primary);
+        line-height: var(--line-snug);
+      }
+      
+      .timeline-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        margin-bottom: var(--space-md);
+        align-items: center;
       }
       
       .timeline-period {
         display: inline-block;
-        background-color: var(--primary-light);
+        background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
         color: var(--primary-dark);
-        padding: 0.25rem var(--space-sm);
+        padding: 0.4rem var(--space-sm);
         border-radius: var(--radius-sm);
         font-size: 0.85rem;
         font-weight: 600;
-        margin-right: var(--space-sm);
+      }
+      
+      .timeline-location {
+        display: inline-block;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+      }
+      
+      .timeline-type {
+        display: inline-block;
+        background-color: var(--secondary-light);
+        color: var(--secondary-dark);
+        padding: 0.3rem var(--space-sm);
+        border-radius: var(--radius-sm);
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
       
       p {
         color: var(--text-secondary);
         margin-bottom: var(--space-md);
+        line-height: var(--line-relaxed);
       }
       
       ul {
         padding-left: var(--space-lg);
         margin: var(--space-md) 0;
+        
+        li {
+          color: var(--text-secondary);
+          margin-bottom: var(--space-sm);
+          line-height: var(--line-relaxed);
+        }
       }
     }
   }
@@ -200,6 +278,7 @@
   h2 {
     text-align: center;
     margin-bottom: var(--space-2xl);
+    color: var(--text-primary);
   }
   
   .card {
@@ -207,20 +286,29 @@
     border-radius: var(--radius-lg);
     overflow: hidden;
     box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
-    border: none;
+    transition: all var(--transition-base);
+    border: 2px solid transparent;
     height: 100%;
+    position: relative;
     
     &:hover {
-      transform: translateY(-10px);
-      box-shadow: var(--shadow-lg);
+      transform: translateY(-12px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--secondary-color);
+      
+      .card-image {
+        transform: scale(1.08);
+      }
     }
     
-    img {
+    .card-image {
       width: 100%;
       height: 200px;
       object-fit: cover;
       display: block;
+      transition: transform var(--transition-base);
+      position: relative;
+      overflow: hidden;
     }
     
     .card-body {
@@ -229,14 +317,16 @@
     
     .card-title {
       color: var(--text-primary);
-      font-weight: 600;
+      font-weight: 700;
       margin-bottom: var(--space-sm);
+      font-size: 1.1rem;
     }
     
     .card-text {
       color: var(--text-secondary);
       font-size: 0.95rem;
       margin-bottom: var(--space-md);
+      line-height: var(--line-normal);
     }
     
     .btn {
@@ -247,27 +337,52 @@
 
 // Contact Section
 .contact-section {
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   text-align: center;
   padding: var(--space-2xl) 0;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  > * {
+    position: relative;
+    z-index: 1;
+  }
   
   h2 {
     font-size: 2.25rem;
     margin-bottom: var(--space-md);
+    font-weight: 700;
+    line-height: var(--line-tight);
   }
   
   p {
     font-size: 1.1rem;
-    color: var(--text-secondary);
     margin-bottom: var(--space-lg);
+    line-height: var(--line-relaxed);
+    opacity: 0.95;
     
     a {
-      color: var(--primary-color);
-      font-weight: 600;
-      transition: all 0.3s;
+      color: white;
+      font-weight: 700;
+      transition: all var(--transition-base);
+      text-decoration: underline;
       
       &:hover {
-        color: var(--primary-dark);
+        opacity: 0.8;
+        text-decoration: none;
       }
     }
   }
@@ -277,20 +392,24 @@
 .site-footer {
   background-color: var(--bg-dark);
   color: white;
-  padding: var(--space-lg) 0;
-  margin-top: var(--space-2xl);
+  padding: var(--space-2xl) 0 var(--space-lg);
+  margin-top: var(--space-3xl);
+  border-top: 3px solid var(--secondary-color);
   
   p {
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: var(--space-sm);
+    line-height: var(--line-normal);
   }
   
   a {
-    color: white;
+    color: var(--secondary-light);
     text-decoration: underline;
+    transition: all var(--transition-base);
     
     &:hover {
-      color: var(--primary-light);
+      color: white;
+      text-decoration: none;
     }
   }
 }
@@ -302,6 +421,11 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  transition: box-shadow var(--transition-base);
+  
+  &:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
   
   .navbar {
     display: flex;
@@ -313,17 +437,42 @@
   .navbar-brand {
     font-weight: 700;
     font-size: 1.25rem;
-    color: var(--primary-color);
+    background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    transition: transform var(--transition-base);
+    
+    &:hover {
+      transform: scale(1.05);
+    }
   }
   
   .nav-link {
     color: var(--text-secondary);
     margin-left: var(--space-lg);
-    transition: all 0.3s;
+    transition: all var(--transition-base);
+    font-weight: 500;
+    position: relative;
+    
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+      transition: width var(--transition-base);
+    }
     
     &:hover {
       color: var(--primary-color);
       text-decoration: none;
+      
+      &::after {
+        width: 100%;
+      }
     }
   }
 }
