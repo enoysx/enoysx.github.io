@@ -1,0 +1,1090 @@
+@charset "UTF-8";
+/**
+ * _variables.scss
+ *
+ * DESCRIPTION:
+ * Centralized variables for consistent theming across the portfolio.
+ * Contains color palette, spacing scale, typography, and shadow definitions.
+ *
+ * USAGE:
+ * Import in other SCSS files: @import 'variables';
+ * Access via CSS variables: var(--primary-color)
+ *
+ * MAINTENANCE:
+ * - Update color values here to change global theme
+ * - Follow 8px spacing scale for consistency
+ * - Use semantic naming (primary, secondary) not literal (blue, red)
+ *
+ * AUTHOR: Dandy Syahputra
+ * LAST UPDATED: 2026-03-01
+ */
+:root {
+  --primary-color: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-light: #dbeafe;
+  --primary-lighter: #eff6ff;
+  --secondary-color: #7c3aed;
+  --secondary-dark: #6d28d9;
+  --secondary-light: #ede9fe;
+  --accent-color: #f59e0b;
+  --accent-dark: #d97706;
+  --accent-light: #fef3c7;
+  --text-primary: #1f2937;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --text-light: #d1d5db;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --bg-dark: #111827;
+  --bg-darker: #0f172a;
+  --success: #10b981;
+  --success-light: #d1fae5;
+  --warning: #f59e0b;
+  --warning-light: #fef3c7;
+  --error: #ef4444;
+  --error-light: #fee2e2;
+  --info: #3b82f6;
+  --info-light: #dbeafe;
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2rem;
+  --space-2xl: 3rem;
+  --space-3xl: 4rem;
+  --space-4xl: 6rem;
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  --shadow-xs: 0 1px 1px rgba(0,0,0,0.04);
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+  --shadow-xl: 0 20px 25px rgba(0,0,0,0.1);
+  --shadow-2xl: 0 25px 50px rgba(0,0,0,0.1);
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-base: 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  --line-tight: 1.25;
+  --line-snug: 1.375;
+  --line-normal: 1.5;
+  --line-relaxed: 1.625;
+  --line-loose: 2;
+}
+
+/**
+ * _mixins.scss
+ *
+ * DESCRIPTION:
+ * Reusable SCSS mixins for responsive breakpoints, flex utilities,
+ * typography helpers, and containers.
+ *
+ * USAGE:
+ * Import after variables: @import 'mixins';
+ * Call using @include sm { ... } etc.
+ *
+ * AUTHOR: Dandy Syahputra
+ * LAST UPDATED: 2026-03-01
+ */
+/**
+ * _base.scss
+ *
+ * DESCRIPTION:
+ * Base styles including resets, typography defaults, and utility classes.
+ *
+ * USAGE:
+ * Import once at the top of main.scss after variables and mixins.
+ *
+ * AUTHOR: Dandy Syahputra
+ * LAST UPDATED: 2026-03-01
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-primary);
+  font-size: 100%;
+  line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-primary);
+  font-weight: 600;
+  margin-bottom: var(--space-md);
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+p {
+  margin: 0 0 var(--space-md) 0;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+a:hover, a:focus {
+  color: var(--primary-dark);
+  text-decoration: underline;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.btn:hover, .btn:focus {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--primary-dark);
+  color: white;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+.btn-secondary:hover, .btn-secondary:focus {
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+}
+
+.btn-outline-primary {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+.btn-outline-primary:hover, .btn-outline-primary:focus {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+ul, ol {
+  margin-bottom: var(--space-md);
+  padding-left: var(--space-lg);
+}
+
+li {
+  margin-bottom: var(--space-sm);
+  color: var(--text-secondary);
+}
+
+.list-unstyled {
+  list-style: none;
+  padding-left: 0;
+}
+.list-unstyled li {
+  padding-left: var(--space-md);
+  position: relative;
+}
+.list-unstyled li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-light {
+  color: white;
+}
+
+.text-muted {
+  color: var(--text-muted);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.mt-1 {
+  margin-top: var(--space-sm);
+}
+
+.mt-2 {
+  margin-top: var(--space-md);
+}
+
+.mt-3 {
+  margin-top: var(--space-lg);
+}
+
+.mt-4 {
+  margin-top: var(--space-xl);
+}
+
+.mb-1 {
+  margin-bottom: var(--space-sm);
+}
+
+.mb-2 {
+  margin-bottom: var(--space-md);
+}
+
+.mb-3 {
+  margin-bottom: var(--space-lg);
+}
+
+.mb-4 {
+  margin-bottom: var(--space-xl);
+}
+
+.me-2 {
+  margin-right: var(--space-md);
+}
+
+.ps-3 {
+  padding-left: var(--space-lg);
+}
+
+.py-5 {
+  padding-top: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+}
+
+.p-1 {
+  padding: var(--space-sm);
+}
+
+.p-2 {
+  padding: var(--space-md);
+}
+
+.p-3 {
+  padding: var(--space-lg);
+}
+
+.d-flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.bg-dark {
+  background-color: var(--bg-dark);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+/**
+ * _responsive.scss
+ *
+ * DESCRIPTION:
+ * Media query rules and responsive utilities for various breakpoints.
+ * Also contains mobile navigation overrides.
+ *
+ * USAGE:
+ * Imported in main.scss after base.
+ *
+ * AUTHOR: Dandy Syahputra
+ * LAST UPDATED: 2026-03-01
+ */
+@media (min-width: 576px) {
+  body {
+    font-size: 1rem;
+  }
+}
+@media (min-width: 768px) {
+  .hero-section {
+    padding: var(--space-xl) 0;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+@media (max-width: 767px) {
+  .navbar-nav .nav-link {
+    padding: var(--space-sm) 0;
+  }
+}
+.container {
+  width: 100%;
+  padding-right: var(--space-sm);
+  padding-left: var(--space-sm);
+  margin-right: auto;
+  margin-left: auto;
+}
+@media (min-width: 576px) {
+  .container {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    max-width: 1140px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: calc(-1 * var(--space-sm));
+  margin-left: calc(-1 * var(--space-sm));
+}
+
+[class*=col-] {
+  padding-right: var(--space-sm);
+  padding-left: var(--space-sm);
+  flex: 0 0 100%;
+}
+
+@media (min-width: 768px) {
+  .col-md-4 {
+    flex: 0 0 33.333%;
+  }
+  .col-md-6 {
+    flex: 0 0 50%;
+  }
+  .col-md-8 {
+    flex: 0 0 66.667%;
+  }
+}
+.navbar-toggler {
+  display: block;
+}
+@media (min-width: 768px) {
+  .navbar-toggler {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+  }
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+}
+@media (min-width: 768px) {
+  .btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+.d-none {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .d-md-block {
+    display: block;
+  }
+  .d-md-none {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .d-lg-block {
+    display: block;
+  }
+  .d-lg-none {
+    display: none;
+  }
+}
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.mt-1 {
+  margin-top: var(--space-sm);
+}
+
+.mt-2 {
+  margin-top: var(--space-md);
+}
+
+.mt-3 {
+  margin-top: var(--space-lg);
+}
+
+.mt-4 {
+  margin-top: var(--space-xl);
+}
+
+.mb-1 {
+  margin-bottom: var(--space-sm);
+}
+
+.mb-2 {
+  margin-bottom: var(--space-md);
+}
+
+.mb-3 {
+  margin-bottom: var(--space-lg);
+}
+
+.mb-4 {
+  margin-bottom: var(--space-xl);
+}
+
+.me-2 {
+  margin-right: var(--space-md);
+}
+
+.ps-3 {
+  padding-left: var(--space-lg);
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.rounded-circle {
+  border-radius: 50%;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 2.5rem;
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.75rem;
+  }
+}
+@media (min-width: 992px) {
+  h1 {
+    font-size: 3rem;
+  }
+  h2 {
+    font-size: 2.25rem;
+  }
+  h3 {
+    font-size: 1.875rem;
+  }
+}
+/**
+ * _sections.scss
+ *
+ * DESCRIPTION:
+ * Styling for individual sections (hero, about, skills, etc.)
+ * Includes animation keyframes.
+ *
+ * USAGE:
+ * Import after base/responsive in main.scss.
+ *
+ * AUTHOR: Dandy Syahputra
+ * LAST UPDATED: 2026-03-01
+ */
+.section {
+  padding: var(--space-2xl) 0;
+  position: relative;
+}
+
+.hero-section {
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--secondary-light) 100%);
+  text-align: center;
+  padding: var(--space-2xl) 0 var(--space-xl);
+  min-height: 600px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+.hero-section h1 {
+  font-size: var(--text-4xl);
+  color: var(--text-primary);
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+  line-height: var(--line-tight);
+}
+.hero-section .lead {
+  font-size: var(--text-3xl);
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+}
+.hero-section p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-md);
+  line-height: var(--line-relaxed);
+}
+.hero-section .social {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+}
+.hero-section .social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: white;
+  color: var(--primary-color);
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+}
+.hero-section .social a:hover {
+  transform: translateY(-5px) rotate(5deg);
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  box-shadow: var(--shadow-lg);
+}
+
+.about-section {
+  background-color: var(--bg-primary);
+}
+.about-section h2 {
+  color: var(--text-primary);
+  margin-bottom: var(--space-lg);
+  font-size: var(--text-2xl);
+}
+.about-section .about-image-wrapper {
+  text-align: center;
+  margin-bottom: var(--space-lg);
+}
+.about-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+.about-section ul li {
+  padding: var(--space-sm) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+}
+.about-section ul li i {
+  color: var(--primary-color);
+  font-size: 1.3rem;
+}
+
+.skills-section {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--primary-light) 5%);
+}
+.skills-section h2 {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  color: var(--text-primary);
+  font-size: var(--text-2xl);
+}
+.skills-section h3 {
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: var(--space-lg);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.skills-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+.skills-section ul li {
+  padding: var(--space-md) var(--space-md) var(--space-md) var(--space-lg);
+  color: var(--text-secondary);
+  position: relative;
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  background-color: var(--bg-primary);
+  margin-bottom: var(--space-sm);
+  line-height: var(--line-normal);
+}
+.skills-section ul li:hover {
+  background-color: var(--primary-light);
+  padding-left: var(--space-xl);
+}
+.skills-section ul li::before {
+  content: "✓";
+  position: absolute;
+  left: var(--space-md);
+  color: var(--secondary-color);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.experience-section {
+  background-color: var(--bg-primary);
+}
+.experience-section .timeline {
+  position: relative;
+  padding: var(--space-lg) 0;
+}
+.experience-section .timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  transform: translateX(-50%);
+  z-index: 0;
+}
+.experience-section .timeline .timeline-item {
+  position: relative;
+  width: calc(50% - var(--space-lg));
+  padding: var(--space-lg);
+  background: white;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-sm);
+  z-index: 1;
+}
+.experience-section .timeline .timeline-item.timeline-item--left {
+  margin-right: auto;
+  margin-left: 0;
+  transform: translateX(-30px);
+}
+.experience-section .timeline .timeline-item.timeline-item--right {
+  margin-left: auto;
+  margin-right: 0;
+  transform: translateX(30px);
+}
+.experience-section .timeline .timeline-item:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateX(0);
+  background: var(--bg-secondary);
+}
+@media (max-width: 767px) {
+  .experience-section .timeline .timeline-item {
+    width: 100%;
+    margin: var(--space-md) 0;
+    transform: translateX(0) !important;
+  }
+}
+.experience-section .timeline .timeline-item h3 {
+  margin: 0 0 var(--space-sm) 0;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  line-height: var(--line-snug);
+}
+.experience-section .timeline .timeline-item .timeline-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-md);
+  align-items: center;
+}
+.experience-section .timeline .timeline-item .timeline-period {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary-color) 100%);
+  color: var(--primary-dark);
+  padding: 0.4rem var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.experience-section .timeline .timeline-item .timeline-location {
+  display: inline-block;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+.experience-section .timeline .timeline-item .timeline-type {
+  display: inline-block;
+  background-color: var(--secondary-light);
+  color: var(--secondary-dark);
+  padding: 0.3rem var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.experience-section .timeline .timeline-item p {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+  line-height: var(--line-relaxed);
+}
+.experience-section .timeline .timeline-item ul {
+  padding-left: var(--space-lg);
+  margin: var(--space-md) 0;
+}
+.experience-section .timeline .timeline-item ul li {
+  color: var(--text-secondary);
+  margin-bottom: var(--space-sm);
+  line-height: var(--line-relaxed);
+}
+
+.portfolio-section {
+  background-color: var(--bg-secondary);
+}
+.portfolio-section h2 {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+  color: var(--text-primary);
+}
+.portfolio-section .card {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: all var(--transition-base);
+  border: 2px solid transparent;
+  height: 100%;
+  position: relative;
+}
+.portfolio-section .card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--secondary-color);
+}
+.portfolio-section .card:hover .card-image {
+  transform: scale(1.08);
+}
+.portfolio-section .card .card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-base);
+  position: relative;
+  overflow: hidden;
+}
+.portfolio-section .card .card-body {
+  padding: var(--space-lg);
+}
+.portfolio-section .card .card-title {
+  color: var(--text-primary);
+  font-weight: 700;
+  margin-bottom: var(--space-sm);
+  font-size: 1.1rem;
+}
+.portfolio-section .card .card-text {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-md);
+  line-height: var(--line-normal);
+}
+.portfolio-section .card .btn {
+  margin-top: auto;
+}
+
+.contact-section {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  text-align: center;
+  padding: var(--space-2xl) 0;
+  color: white;
+}
+.contact-section > * {
+  position: relative;
+  z-index: 1;
+}
+.contact-section > * {
+  position: relative;
+  z-index: 1;
+}
+.contact-section h2 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-md);
+  font-weight: 700;
+  line-height: var(--line-tight);
+}
+.contact-section p {
+  font-size: 1.1rem;
+  margin-bottom: var(--space-lg);
+  line-height: var(--line-relaxed);
+  opacity: 0.95;
+}
+.contact-section p a {
+  color: white;
+  font-weight: 700;
+  transition: all var(--transition-base);
+  text-decoration: underline;
+}
+.contact-section p a:hover {
+  opacity: 0.8;
+  text-decoration: none;
+}
+
+.site-footer {
+  background-color: var(--bg-dark);
+  color: white;
+  padding: var(--space-2xl) 0 var(--space-lg);
+  margin-top: var(--space-3xl);
+  border-top: 3px solid var(--secondary-color);
+}
+.site-footer p {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: var(--space-sm);
+  line-height: var(--line-normal);
+}
+.site-footer a {
+  color: var(--secondary-light);
+  text-decoration: underline;
+  transition: all var(--transition-base);
+}
+.site-footer a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+.resume-container {
+  max-width: 900px;
+  margin: var(--space-3xl) auto;
+  padding: var(--space-lg);
+  font-family: var(--body-font);
+  line-height: var(--line-relaxed);
+  color: var(--text-primary);
+}
+
+.resume-section h2 {
+  color: var(--primary-color);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-md);
+}
+
+.resume-section h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.resume-list {
+  margin: var(--space-md) 0;
+  padding-left: var(--space-lg);
+}
+
+.font-weight-600 {
+  font-weight: 600;
+}
+
+.site-header {
+  background: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: box-shadow var(--transition-base);
+}
+.site-header:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+.site-header .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-md) 0;
+}
+.site-header .navbar-brand {
+  font-weight: 700;
+  font-size: 1.25rem;
+  background: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: transform var(--transition-base);
+}
+.site-header .navbar-brand:hover {
+  transform: scale(1.05);
+}
+.site-header .nav-link {
+  color: var(--text-secondary);
+  margin-left: var(--space-lg);
+  transition: all var(--transition-base);
+  font-weight: 500;
+  position: relative;
+}
+.site-header .nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  transition: width var(--transition-base);
+}
+.site-header .nav-link:hover {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+.site-header .nav-link:hover::after {
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in-left {
+  animation: slideInLeft 0.6s ease-out;
+}
+
+.slide-in-right {
+  animation: slideInRight 0.6s ease-out;
+}
+
+/* Utility classes placeholder - additional helpers can be defined here */
+
+/*# sourceMappingURL=main.css.map */
