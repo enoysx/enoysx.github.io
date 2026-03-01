@@ -1,379 +1,401 @@
-// main.js (module style)
-// global data variables (supporting older names for backwards compatibility)
-const personal = window.personalData || window.personalInfo || {};
-const skills = window.vibeStack || window.skills || {};
-const projects = window.projectsData || window.projects || [];
-const experience = window.experienceData || window.experience || [];
-const education = window.educationData || [];
+// Vibe Coder Portfolio - Main JavaScript
+// Data sources
+const personal = window.personalData || {};
+const vibeStack = window.vibeStack || {};
+const projects = window.projectsData || [];
+const experience = window.experienceData || [];
 
-// helpers
-const $ = sel => document.querySelector(sel);
-const $$ = sel => Array.from(document.querySelectorAll(sel));
+// DOM Helpers
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => document.querySelectorAll(sel);
 
-/* render functions */
-function renderHeroStats(){
+// ===== HERO CONTENT =====
+function renderHeroContent() {
+  const eyebrow = $('#hero .hero-eyebrow');
+  const nameElem = $('#hero .hero-name');
+  const tagline = $('#hero .hero-tagline');
+  const desc = $('#hero .hero-description');
+
+  if (eyebrow && personal.role) eyebrow.textContent = personal.role;
+  if (nameElem && personal.name) nameElem.textContent = personal.name;
+  if (tagline && personal.tagline) tagline.textContent = personal.tagline;
+  if (desc && personal.about && personal.about.short) {
+    desc.textContent = personal.about.short;
+  }
+}
+
+// ===== HERO STATS =====
+function renderHeroStats() {
   const container = $('#hero-stats');
-  if(!container || !personal.stats) return;
-  personal.stats && Object.entries(personal.stats).forEach(([k,v])=>{
-    const label = k.replace(/([A-Z])/g, ' $1').replace(/^./,s=>s.toUpperCase());
+  if (!container || !personal.stats) return;
+
+  Object.entries(personal.stats).forEach(([key, value], index) => {
+    const label = key
+      .replace(/([A-Z])/g, ' $1')
+      .replace(/^./, (s) => s.toUpperCase())
+      .trim();
+
     const item = document.createElement('div');
-    item.className='stats-item';
-    item.innerHTML=`<div class="value">${v}</div><div class="label text-sm">${label}</div>`;
+    item.className = 'hero-stat-item';
+    item.style.animationDelay = `${index * 100}ms`;
+    item.innerHTML = `
+      <span class="hero-stat-value">${value}</span>
+      <span class="hero-stat-label">${label}</span>
+    `;
     container.appendChild(item);
   });
-  // tagline
-  const desc = $('#hero-description');
-  if(desc && personal.tagline){ desc.textContent = personal.tagline; }
+
+  lucide.replace();
 }
 
-function renderAboutSection(){
+// ===== ABOUT SECTION =====
+function renderAboutSection() {
   const textContainer = $('#about-text');
-  const heading = $('#about-heading');
-  if(personal.about){
-    if(heading && personal.about.short) heading.textContent = personal.about.short;
-    if(textContainer && personal.about.paragraphs){
-      personal.about.paragraphs.forEach(p=>{
-        const el=document.createElement('p');
-        el.textContent = p;
-        textContainer.appendChild(el);
-      });
-    }
-  }
-  // set email links
-  if(personal.email){
-    const aboutEmail = $('#about-email');
-    const contactEmail = $('#contact-email');
-    if(aboutEmail) aboutEmail.textContent = personal.email;
-    if(contactEmail){
-      contactEmail.textContent = personal.email;
-      contactEmail.href = `mailto:${personal.email}`;
-    }
-  }
-}
+  const statsContainer = $('#about-stats');
 
-function renderSkills(){
-  const container = $('#skills-grid');
-  if(!container) return;
-  container.innerHTML='';
-  Object.keys(skills).forEach(cat=>{
-    const section = document.createElement('div');
-    section.className='skill-category';
-    section.innerHTML=`<h4 class="font-semibold mb-2">${cat}</h4>`;
-    const list = document.createElement('div');
-    list.className='flex flex-wrap gap-2';
-    skills[cat].forEach(s=>{
-      const tag = document.createElement('span');
-      tag.className='px-2 py-1 text-sm rounded bg-white/6 inline-flex items-center gap-1';
-      let content = '';
-      if(s.icon){
-        content += `<i data-lucide="${s.icon}" class="w-4 h-4"></i>`;
-      }
-      content += s.name;
-      if(s.role){
-        content += ` <span class="text-xs italic">(${s.role})</span>`;
-      }
-      tag.innerHTML = content;
-      list.appendChild(tag);
+  if (!textContainer || !personal.about) return;
+
+  // Clear existing content
+  textContainer.innerHTML = '';
+  statsContainer.innerHTML = '';
+
+  // Render paragraphs
+  if (personal.about.paragraphs) {
+    personal.about.paragraphs.forEach((paragraph) => {
+      const p = document.createElement('p');
+      p.style.fontSize = '18px';
+      p.style.lineHeight = '1.7';
+      p.style.color = 'var(--secondary)';
+      p.style.marginBottom = 'var(--space-md)';
+      p.textContent = paragraph;
+      textContainer.appendChild(p);
     });
-    section.appendChild(list);
-    container.appendChild(section);
-  });
+  }
+
+  // Render stats
+  if (personal.stats) {
+    Object.entries(personal.stats).forEach(([key, value]) => {
+      const label = key
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/^./, (s) => s.toUpperCase())
+        .trim();
+
+      const statCard = document.createElement('div');
+      statCard.className = 'stat-card';
+      statCard.innerHTML = `
+        <div class="stat-card-number">${value}</div>
+        <div class="stat-card-label">${label}</div>
+      `;
+      statsContainer.appendChild(statCard);
+    });
+  }
+}
+
+// ===== VIBE STACK SECTION =====
+function renderVibeStack() {
+  const aiToolsGrid = $('#ai-tools-grid');
+  const techGrid = $('#tech-grid');
+
+  if (!aiToolsGrid || !vibeStack) return;
+
+  // AI Tools
+  if (vibeStack['Vibe Tools']) {
+    aiToolsGrid.innerHTML = '';
+    vibeStack['Vibe Tools'].forEach((tool) => {
+      const toolCard = document.createElement('div');
+      toolCard.className = 'tool-card';
+      toolCard.innerHTML = `
+        <svg class="tool-icon" data-lucide="${tool.icon || 'cpu'}" width="48" height="48"></svg>
+        <div class="tool-name">${tool.name}</div>
+        <div class="tool-role">${tool.role || ''}</div>
+      `;
+      aiToolsGrid.appendChild(toolCard);
+    });
+  }
+
+  // Traditional Stack
+  if (techGrid) {
+    techGrid.innerHTML = '';
+    
+    // Combine all other categories
+    Object.entries(vibeStack).forEach(([category, items]) => {
+      if (category !== 'Vibe Tools') {
+        items.forEach((item) => {
+          const techItem = document.createElement('div');
+          techItem.className = 'tech-item';
+          
+          if (item.level) {
+            techItem.innerHTML = `
+              <div class="tech-label">${item.name}</div>
+              <div class="progress-bar">
+                <div class="progress-bar-fill" style="width: ${item.level}%"></div>
+              </div>
+            `;
+          } else {
+            techItem.innerHTML = `
+              <div class="tech-label">${item.name}</div>
+              <div style="color: var(--secondary); font-size: 14px;">${item.role || ''}</div>
+            `;
+          }
+          
+          techGrid.appendChild(techItem);
+        });
+      }
+    });
+  }
+
   lucide.replace();
 }
 
-function renderProjects(filter='All'){
-  const grid = $('#projects-grid');
-  if(!grid) return;
-  grid.innerHTML='';
-  const list = projects.filter(p=>{
-    if(filter==='All') return true;
-    if(p.category && p.category.toLowerCase()===filter.toLowerCase()) return true;
-    if((p.tags||[]).includes(filter)) return true;
-    return false;
-  });
-  list.forEach(p=>{
-    const el=document.createElement('article');
-    el.className='project-card rounded-md overflow-hidden bg-white/5 border border-white/6 group';
-    // include vibeMethod badge if present
-    const vibeBadge = p.vibeMethod ? `<span class="px-2 py-1 text-xs rounded bg-accent text-neutral-900">AI Assisted</span>` : '';
-    el.innerHTML=`
-      <div class="h-44 bg-black/10 overflow-hidden">
-        <img src="${p.image}" alt="${p.title}" class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
-      </div>
-      <div class="p-4">
-        <h4 class="font-semibold mb-2">${p.title} ${vibeBadge}</h4>
-        <p class="text-sm text-neutral-300 mb-3 line-clamp-2">${p.description}</p>
-        ${(p.vibeMethod)?`<p class="text-xs italic text-secondary-300 mb-2">${p.vibeMethod}</p>`:''}
-        <div class="flex items-center justify-between">
-          <div class="flex gap-2">${(p.tags||[]).map(t=>`<span class=\"px-2 py-1 text-xs rounded bg-white/6\">${t}</span>`).join('')}</div>
-          <div class="flex gap-2">
-            ${p.demoUrl?`<a href="${p.demoUrl}" target="_blank" class="px-2 py-1 bg-white/6 rounded"><i data-lucide="external-link"></i></a>`:''}
-            ${p.repoUrl?`<a href="${p.repoUrl}" target="_blank" class="px-2 py-1 bg-white/6 rounded"><i data-lucide="github"></i></a>`:''}
-          </div>
+// ===== EXPERIENCE SECTION =====
+function renderExperience() {
+  const container = $('#experience-list');
+  if (!container || !experience.length) return;
+
+  container.innerHTML = '';
+
+  experience.forEach((item, index) => {
+    const timelineItem = document.createElement('div');
+    timelineItem.className = 'timeline-item';
+    timelineItem.innerHTML = `
+      <h4>${item.role}</h4>
+      <span class="timeline-period">${item.period}</span>
+      <span style="font-size: 14px; color: var(--secondary);">${item.company}</span>
+      <p class="timeline-description">${item.description}</p>
+      ${
+        item.achievements && item.achievements.length
+          ? `
+        <ul class="timeline-achievements">
+          ${item.achievements.map((achievement) => `<li>${achievement}</li>`).join('')}
+        </ul>
+      `
+          : ''
+      }
+      ${
+        item.technologies && item.technologies.length
+          ? `
+        <div class="timeline-tags">
+          ${item.technologies.map((tech) => `<span class="tag">${tech}</span>`).join('')}
         </div>
-      </div>
+      `
+          : ''
+      }
     `;
-    grid.appendChild(el);
+    container.appendChild(timelineItem);
   });
-  lucide.replace();
 }
 
-function renderFilters(){
+// ===== PROJECTS SECTION =====
+function renderProjectFilters() {
   const container = $('#project-filters');
-  if(!container) return;
-  const base = ['All','Vibe','Traditional','Academic'];
-  const filtersSet = new Set(base);
-  projects.forEach(p=>{(p.tags||[]).forEach(t=>filtersSet.add(t));});
-  const filters = Array.from(filtersSet);
-  filters.forEach(f=>{
-    const btn=document.createElement('button');
-    btn.className='px-3 py-1 rounded bg-white/6 filter-btn';
-    btn.textContent=f;
-    btn.addEventListener('click',()=>{
-      renderProjects(f);
-      $$('.filter-btn').forEach(b=>b.classList.remove('bg-primary-500','text-neutral-900'));
-      btn.classList.add('bg-primary-500','text-neutral-900');
+  if (!container) return;
+
+  container.innerHTML = '';
+
+  const filters = new Set(['All']);
+  projects.forEach((project) => {
+    if (project.category) filters.add(project.category);
+    if (project.tags) project.tags.forEach((tag) => filters.add(tag));
+  });
+
+  Array.from(filters).forEach((filter) => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    if (filter === 'All') btn.classList.add('active');
+    btn.textContent = filter;
+    btn.addEventListener('click', () => {
+      $$('.filter-btn').forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderProjects(filter);
     });
     container.appendChild(btn);
   });
 }
 
-function renderExperience(){
-  const container=$('#experience-list');
-  if(!container) return;
-  experience.forEach(item=>{
-    const el=document.createElement('div');
-    el.className='timeline-item';
-    el.innerHTML=`
-      <h4 class="font-semibold">${item.role} <span class="text-sm font-normal">@ ${item.company}</span></h4>
-      <span class="text-sm text-neutral-400">${item.period} • ${item.location}</span>
-      <p class="mt-2 text-neutral-300">${item.description}</p>
-      ${(item.achievements && item.achievements.length)?`<ul class="list-disc list-inside text-neutral-300 mt-1">${item.achievements.map(a=>`<li>${a}</li>`).join('')}</ul>`:''}
-    `;
-    container.appendChild(el);
+function renderProjects(filter = 'All') {
+  const grid = $('#projects-grid');
+  if (!grid) return;
+
+  grid.innerHTML = '';
+
+  const filtered = projects.filter((p) => {
+    if (filter === 'All') return true;
+    if (p.category === filter) return true;
+    if (p.tags && p.tags.includes(filter)) return true;
+    return false;
   });
-}
 
-function renderEducation(){
-  const container=$('#education-list');
-  if(!container) return;
-  education.forEach(item=>{
-    const el=document.createElement('div');
-    el.className='timeline-item';
-    el.innerHTML=`
-      <h4 class="font-semibold">${item.degree} <span class="text-sm font-normal">${item.field}</span></h4>
-      <span class="text-sm text-neutral-400">${item.school} — ${item.location}</span>
-      <span class="text-sm text-neutral-400 block">${item.period}</span>
-      <p class="mt-2 text-neutral-300">${item.description}</p>
-      ${(item.achievements && item.achievements.length)?`<ul class="list-disc list-inside text-neutral-300 mt-1">${item.achievements.map(a=>`<li>${a}</li>`).join('')}</ul>`:''}
+  filtered.forEach((project) => {
+    const card = document.createElement('article');
+    card.className = 'project-card';
+
+    const vibeBadge = project.vibeMethod
+      ? `<span class="badge-vibe">AI-Assisted</span>`
+      : '';
+
+    card.innerHTML = `
+      <img src="${project.image}" alt="${project.title}" class="project-card-image" />
+      ${vibeBadge ? `<div class="project-card-vibe-badge">${vibeBadge}</div>` : ''}
+      <div class="project-card-content">
+        <div class="project-card-category">${project.category || 'Portfolio'}</div>
+        <h3 class="project-card-title">${project.title}</h3>
+        <p class="project-card-description">${project.description}</p>
+        ${
+          project.tags && project.tags.length
+            ? `
+          <div class="project-card-tags">
+            ${project.tags.map((tag) => `<span class="tag">${tag}</span>`).join('')}
+          </div>
+        `
+            : ''
+        }
+        <div class="project-card-links">
+          ${
+            project.demoUrl
+              ? `<a href="${project.demoUrl}" target="_blank" rel="noopener">
+              <svg data-lucide="external-link" width="16" height="16"></svg>
+              <span>Live Demo</span>
+            </a>`
+              : ''
+          }
+          ${
+            project.repoUrl
+              ? `<a href="${project.repoUrl}" target="_blank" rel="noopener">
+              <svg data-lucide="github" width="16" height="16"></svg>
+              <span>Source</span>
+            </a>`
+              : ''
+          }
+        </div>
+      </div>
     `;
-    container.appendChild(el);
+
+    grid.appendChild(card);
   });
-}
 
-function typeWriter(el, text, speed=100){
-  if(!el||!text) return;
-  let i=0;
-  el.textContent='';
-  const cursor = document.createElement('span');
-  cursor.className='blink';
-  el.appendChild(cursor);
-  function type(){
-    if(i<text.length){
-      el.insertBefore(document.createTextNode(text.charAt(i)),cursor);
-      i++;
-      setTimeout(type,speed);
-    }
-  }
-  type();
-}
-
-function initTheme(){
-  const html=document.documentElement;
-  const toggle=$('#theme-toggle');
-  const stored=localStorage.getItem('theme');
-  if(stored==='dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)){
-    html.classList.add('dark');
-  } else {
-    html.classList.remove('dark');
-  }
-  swapThemeIcon();
-  if(toggle){
-    toggle.addEventListener('click',()=>{
-      html.classList.toggle('dark');
-      localStorage.setItem('theme', html.classList.contains('dark')?'dark':'light');
-      swapThemeIcon();
-    });
-  }
-}
-
-function swapThemeIcon(){
-  const icon = $('#theme-icon');
-  if(!icon) return;
-  if(document.documentElement.classList.contains('dark')){
-    icon.setAttribute('data-lucide','sun');
-  } else {
-    icon.setAttribute('data-lucide','moon');
-  }
   lucide.replace();
 }
 
-function initMobileMenu(){
+// ===== NAVIGATION =====
+function initMobileMenu() {
   const btn = $('#mobile-menu-btn');
   const menu = $('#mobile-menu');
-  if(btn && menu){
-    btn.addEventListener('click', ()=> menu.classList.toggle('hidden'));
-  }
-}
+  const navLinks = $('.nav-links');
 
-function initCopyEmail(){
-  const copyBtn = $('#copy-email');
-  const emailLink = $('#contact-email') || $('#about-email');
-  if(copyBtn && emailLink){
-    copyBtn.addEventListener('click', async ()=>{
-      try{ await navigator.clipboard.writeText(emailLink.textContent); copyBtn.textContent='Copied'; setTimeout(()=>copyBtn.textContent='Copy',1500);}catch(e){console.warn(e);}
-    });
-  }
-}
+  if (!btn || !menu) return;
 
-function initSmoothScroll(){
-  document.querySelectorAll('a[href^="#"]').forEach(a=>{
-    a.addEventListener('click', e=>{
-      const href=a.getAttribute('href');
-      if(href.startsWith('#')){
-        e.preventDefault();
-        const el=document.querySelector(href);
-        if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
-      }
-    });
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('show');
   });
-}
 
-function initScrollSpy(){
-  const sections=document.querySelectorAll('section[id]');
-  const links=document.querySelectorAll('nav a');
-  const obs=new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        const id=entry.target.id;
-        links.forEach(l=>{
-          l.classList.toggle('text-primary-500', l.getAttribute('href')===`#${id}`);
-        });
-      }
-    });
-  },{threshold:0.6});
-  sections.forEach(s=>obs.observe(s));
-}
-
-function initBackToTop(){
-  const btn = $('#back-to-top');
-  if(!btn) return;
-  window.addEventListener('scroll',()=>{
-    if(window.scrollY>400) btn.classList.remove('hidden');
-    else btn.classList.add('hidden');
-  });
-  btn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-}
-
-// vibe mode toggle switches between chill/hype pacing
-function initVibeMode(){
-  const html = document.documentElement;
-  const toggle = $('#vibe-toggle');
-  const icon = $('#vibe-icon');
-  const stored = localStorage.getItem('vibeMode');
-  function apply(mode){
-    html.classList.remove('vibe-chill','vibe-hype');
-    html.classList.add(mode);
-    if(icon){
-      icon.setAttribute('data-lucide', mode==='vibe-hype' ? 'zap' : 'minus');
-    }
-  }
-  if(stored==='hype') apply('vibe-hype');
-  else apply('vibe-chill');
-  if(toggle){
-    toggle.addEventListener('click',()=>{
-      const current = html.classList.contains('vibe-hype')?'hype':'chill';
-      const next = current==='hype'?'chill':'hype';
-      apply('vibe-'+next);
-      localStorage.setItem('vibeMode', next);
-    });
-  }
-}
-
-function initLiveCoding(){
-  const container = $('#live-coding');
-  if(!container) return;
-  // fetch latest public events from GitHub user
-  fetch('https://api.github.com/users/enoysx/events/public')
-    .then(r=>r.json())
-    .then(events=>{
-      const commits = events.filter(e=>e.type==='PushEvent').slice(0,3);
-      if(commits.length===0){ container.textContent='No recent activity'; return; }
-      commits.forEach(ev=>{
-        const repo = ev.repo.name;
-        const msg = ev.payload.commits && ev.payload.commits[0] && ev.payload.commits[0].message;
-        const item = document.createElement('div');
-        item.className='text-xs mb-1';
-        item.textContent = `📦 ${repo}: ${msg}`;
-        container.appendChild(item);
+  // Populate mobile menu
+  if (navLinks && menu) {
+    menu.innerHTML = navLinks.innerHTML;
+    $$('#mobile-menu a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.remove('show');
       });
-    }).catch(e=>{ console.warn('live coding fetch error',e); });
+    });
+  }
 }
 
-function initChatSimulator(){
-  const toggle = $('#chat-toggle');
-  const windowEl = $('#chat-window');
-  if(!toggle||!windowEl) return;
-  toggle.addEventListener('click',()=>{
-    const chatSection = $('#ai-chat');
-    if(chatSection){
-      chatSection.classList.toggle('hidden');
-      if(!chatSection.classList.contains('hidden')) {
-        populateChat();
+// ===== SMOOTH SCROLL & SCROLL SPY =====
+function initSmoothScroll() {
+  $$('a[href^="#"]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href');
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const target = $(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
+    });
+  });
+}
+
+function initScrollSpy() {
+  const sections = $$('section[id]');
+  const navLinks = $$('.nav-links a');
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          navLinks.forEach((link) => {
+            const isActive = link.getAttribute('href') === `#${id}`;
+            link.classList.toggle('active', isActive);
+          });
+        }
+      });
+    },
+    { threshold: 0.3 }
+  );
+
+  sections.forEach((section) => observer.observe(section));
+}
+
+// ===== CONTACT EMAIL =====
+function initContactEmail() {
+  if (personal.email) {
+    const emailLink = $('#contact-email');
+    if (emailLink) {
+      emailLink.textContent = personal.email;
+      emailLink.href = `mailto:${personal.email}`;
     }
+  }
+}
+
+// ===== ANIMATIONS =====
+function initScrollReveal() {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  // Observe elements with animation classes
+  $$('.fade-in, .fade-in-up, .slide-in-left, .slide-in-right').forEach((el) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    observer.observe(el);
   });
 }
 
-function populateChat(){
-  const windowEl = $('#chat-window');
-  if(!windowEl) return;
-  if(windowEl.dataset.filled) return;
-  windowEl.dataset.filled = '1';
-  const convo = [
-    {who:'You',text:'How can I build that dashboard quickly?'},
-    {who:'AI',text:'Use React + Tailwind and ask Copilot for component boilerplate.'},
-    {who:'You',text:'Maybe add a particle background?'},
-    {who:'AI',text:'Sure, canvas with connected dots. I can show you example code.'}
-  ];
-  convo.forEach(m=>{
-    const line = document.createElement('div');
-    line.innerHTML = `<strong>${m.who}:</strong> ${m.text}`;
-    windowEl.appendChild(line);
-  });
-}
-
-function init(){
+// ===== INITIALIZATION =====
+function init() {
+  // Render content
+  renderHeroContent();
   renderHeroStats();
   renderAboutSection();
-  renderSkills();
-  renderFilters();
-  renderProjects();
+  renderVibeStack();
   renderExperience();
-  renderEducation();
-  initTheme();
+  renderProjectFilters();
+  renderProjects('All');
+  initContactEmail();
+
+  // Initialize interactions
   initMobileMenu();
-  initVibeMode();
-  initCopyEmail();
   initSmoothScroll();
   initScrollSpy();
-  initBackToTop();
-  initLiveCoding();
-  initChatSimulator();
-  const roleEl = $('#hero-role');
-  if(roleEl) typeWriter(roleEl, personal.role || '');
+  initScrollReveal();
+
+  // Replace Lucide icons
+  lucide.replace();
 }
 
-if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',()=>{init();});
-else init();
+// Run on DOM ready
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init);
+} else {
+  init();
+}
 

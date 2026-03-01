@@ -3,22 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dandy Syahputra | Full Stack Developer</title>
-    <meta name="description" content="Portfolio of Dandy Syahputra, Full Stack Developer. View projects, skills, and contact." />
+    <title>Dandy Syahputra | Vibe Coder</title>
+    <meta name="description" content="Portfolio of Dandy Syahputra - Vibe Coder. Building with intuition, shipping with AI." />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- Tailwind CDN -->
-    <script>
-      tailwind = {config: {darkMode: 'class'}}
-    </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- AOS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -27,196 +18,194 @@
     <link rel="stylesheet" href="/assets/css/custom.css">
 
     <!-- Meta / SEO -->
-    <meta property="og:title" content="Dandy Syahputra | Full Stack Developer" />
-    <meta property="og:description" content="Portfolio of Dandy Syahputra" />
+    <meta property="og:title" content="Dandy Syahputra | Vibe Coder" />
+    <meta property="og:description" content="Building with intuition, shipping with AI" />
     <meta property="og:url" content="https://enoysx.github.io/" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   </head>
-  <body class="bg-neutral-950 text-neutral-50 transition-colors duration-300 antialiased">
-    <header class="fixed inset-x-0 top-0 z-40">
-      <nav class="backdrop-blur bg-black/30 border-b border-white/6">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex items-center justify-between h-16">
-            <a href="#hero" class="font-semibold text-lg">DS<span class="text-primary-500">.</span></a>
-            <div class="hidden md:flex items-center space-x-6">
-              <a href="#about" class="hover:text-primary-400">About</a>
-              <a href="#vibe-stack" class="hover:text-primary-400">Vibe Stack</a>
-              <a href="#experience" class="hover:text-primary-400">Experience</a>
-              <a href="#projects" class="hover:text-primary-400">Projects</a>
-              <a href="#contact" class="hover:text-primary-400">Contact</a>
-              <button id="vibe-toggle" aria-label="Toggle vibe mode" class="p-2 rounded-md bg-white/6">
-                <i id="vibe-icon" data-lucide="zap" class="w-5 h-5"></i>
-              </button>
-              <button id="theme-toggle" aria-label="Toggle theme" class="p-2 rounded-md bg-white/6">
-                <i id="theme-icon" data-lucide="moon" class="w-5 h-5"></i>
-              </button>
-            </div>
-            <div class="md:hidden">
-              <button id="mobile-menu-btn" class="p-2 rounded-md bg-white/6">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-        <div id="mobile-menu" class="hidden md:hidden border-t border-white/5">
-          <div class="px-4 py-4 space-y-2">
-            <a href="#about" class="block">About</a>
-            <a href="#vibe-stack" class="block">Vibe Stack</a>
-            <a href="#experience" class="block">Experience</a>
-            <a href="#education" class="block">Education</a>
-            <a href="#projects" class="block">Projects</a>
-            <a href="#contact" class="block">Contact</a>
-          </div>
-        </div>
+  <body>
+
+    <!-- Navigation -->
+    <header>
+      <nav class="container">
+        <a href="#" class="logo">enoysx</a>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#vibe-stack">Vibe Stack</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+          <svg data-lucide="menu" width="24" height="24"></svg>
+        </button>
+        <div id="mobile-menu"></div>
       </nav>
     </header>
 
-    <main class="pt-20">
-      <!-- Hero -->
-      <section id="hero" class="relative min-h-screen flex items-center justify-center hero-bg text-center overflow-hidden">
-        <canvas id="particle-canvas" class="absolute inset-0 w-full h-full -z-10"></canvas>
-        <div class="container" data-aos="fade-up">
-          <h1 class="text-5xl sm:text-7xl font-extrabold mb-4 gradient-text">Hi, I'm <span class="gradient-text glitch">Dandy Syahputra</span></h1>
-          <p class="text-2xl text-neutral-300 mb-3"><span id="hero-role" class="typewriter"></span></p>
-          <p class="max-w-2xl mx-auto text-neutral-400 mb-6" id="hero-description">I build modern, accessible web experiences that solve real problems. Passionate about clean code, user-centric design, and continuous learning.</p>
-          <div class="flex flex-wrap justify-center gap-4 mb-8">
-            <a href="#projects" class="btn-primary"><span>View My Work</span><i data-lucide="arrow-right"></i></a>
-            <a href="#contact" class="btn-outline"><span>Contact Me</span><i data-lucide="mail"></i></a>
+    <!-- Main Content -->
+    <main style="padding-top: 72px;">
+      <!-- Hero Section -->
+      <section id="hero">
+        <div class="container">
+          <div class="hero-content fade-in">
+            <span class="hero-eyebrow">Vibe Coder</span>
+            <h1 class="hero-name">Dandy Syahputra</h1>
+            <h2 class="hero-tagline">Building with intuition, shipping with AI</h2>
+            <p class="hero-description">
+              I'm a developer who leverages AI tools to build modern applications rapidly. 
+              Turning ideas into functional prototypes at the speed of thought.
+            </p>
+            <div class="hero-cta-group">
+              <a href="#projects" class="btn btn-primary">
+                <span>View My Work</span>
+                <svg data-lucide="arrow-right" width="18" height="18"></svg>
+              </a>
+              <a href="#contact" class="btn btn-secondary">
+                <span>Get in Touch</span>
+                <svg data-lucide="mail" width="18" height="18"></svg>
+              </a>
+            </div>
+            <div class="hero-stats" id="hero-stats"></div>
           </div>
-          <div id="hero-stats" class="stats-row"></div>
-          <div id="live-coding" class="mt-6 text-sm text-neutral-400"></div>
         </div>
-        <div class="scroll-indicator"></div>
-      </section>
-
-      <!-- About -->
-      <section id="about" class="bg-surface">
-        <div class="container grid md:grid-cols-2 gap-12 items-center">
-          <div class="relative" data-aos="fade-right">
-            <div class="w-80 h-80 mx-auto md:mx-0 rounded-full overflow-hidden bg-gradient-to-br from-primary-500 to-secondary-500 p-1 animate-spin-slow">
-              <img src="/assets/img/profile.jpg" alt="Dandy Syahputra" class="rounded-full w-full h-full object-cover">
-            </div>
-            <div class="absolute inset-0 -z-10">
-              <div class="blur-lg bg-primary-500 opacity-20 rounded-full w-40 h-40 left-[-20%] top-[-20%]"></div>
-            </div>
-          </div>
-          <div data-aos="fade-left">
-            <div class="mb-4">
-              <span class="text-sm font-mono text-accent">About Me</span>
-              <h2 class="text-4xl font-bold" id="about-heading">Building digital experiences with passion</h2>
-            </div>
-            <div class="space-y-4 text-neutral-300" id="about-text">
-              <!-- filled by JS -->
-            </div>
-            <div class="info-cards mt-6">
-              <div class="info-card"><i data-lucide="map-pin"></i><span>Indonesia</span></div>
-              <div class="info-card"><i data-lucide="briefcase"></i><span>Open to work</span></div>
-              <div class="info-card"><i data-lucide="mail"></i><span id="about-email">your.email@example.com</span></div>
-            </div>
-            <a href="/assets/resume.pdf" target="_blank" class="mt-6 inline-flex items-center px-6 py-3 bg-primary-500 text-neutral-900 font-medium rounded-md shadow hover:shadow-lg transition"><i data-lucide="download"></i><span> Download CV</span></a>
-          </div>
+        <div class="scroll-indicator">
+          <svg class="scroll-indicator-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="m6 9 6 6 6-6"></path>
+          </svg>
         </div>
       </section>
 
-      <!-- Skills -->
+      <!-- About Section -->
+      <section id="about">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-image-wrapper slide-in-left">
+              <img src="/assets/img/profile.jpg" alt="Dandy Syahputra" class="about-image" />
+            </div>
+            <div class="about-content slide-in-right">
+              <span class="eyebrow">About</span>
+              <h2>The Vibe Coder Approach</h2>
+              <div id="about-text">
+                <!-- Filled by JavaScript -->
+              </div>
+              <div class="about-stats" id="about-stats">
+                <!-- Filled by JavaScript -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Vibe Stack Section -->
       <section id="vibe-stack">
         <div class="container">
-          <h3 class="text-3xl font-bold mb-8 text-center">Vibe Stack</h3>
-          <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
-        </div>
-      </section>
-
-      <!-- Experience -->
-      <section id="experience" class="bg-surface">
-        <div class="container">
-          <h3 class="text-3xl font-bold mb-8 text-center">Experience</h3>
-          <div id="experience-list" class="timeline"></div>
-        </div>
-      </section>
-
-      <!-- Education -->
-      <section id="education">
-        <div class="container">
-          <h3 class="text-3xl font-bold mb-8 text-center">Education</h3>
-          <div id="education-list" class="timeline"></div>
-        </div>
-      </section>
-
-      <!-- Projects -->
-      <section id="projects">
-        <div class="container">
-          <div class="flex justify-between items-center mb-6">
-            <h3 class="text-3xl font-bold">Featured Projects</h3>
-            <div id="project-filters" class="space-x-2"></div>
+          <div class="vibe-stack-header animate-stagger">
+            <span class="eyebrow">Tools</span>
+            <h2>Vibe Coder Stack</h2>
+            <p>The tools and AI assistants that power rapid development</p>
           </div>
-          <div id="projects-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-        </div>
-      </section>
+          
+          <h3 style="text-align: center; margin-bottom: 2rem; color: var(--primary); font-size: 20px; font-weight: 600;">AI Tools</h3>
+          <div class="ai-tools-grid animate-stagger" id="ai-tools-grid">
+            <!-- Filled by JavaScript -->
+          </div>
 
-      <!-- Chat Simulator -->
-      <button id="chat-toggle" class="fixed bottom-6 left-6 p-3 bg-secondary-500 rounded-full shadow-lg z-50"><i data-lucide="message-square" class="w-6 h-6"></i></button>
-      <section id="ai-chat" class="bg-surface hidden">
-        <div class="container">
-          <h3 class="text-2xl font-bold mb-4">Vibe Chat Simulator</h3>
-          <div id="chat-window" class="bg-black/20 p-4 rounded h-64 overflow-y-auto font-mono text-sm"></div>
-        </div>
-      </section>
-
-      <!-- Contact -->
-      <section id="contact" class="bg-surface">
-        <div class="container grid md:grid-cols-2 gap-12">
-          <div data-aos="fade-right">
-            <h3 class="text-3xl font-bold mb-4">Let's Work Together</h3>
-            <p class="text-neutral-300 mb-6">Have a project in mind? Let's discuss how I can help.</p>
-            <div class="space-y-4 text-neutral-300">
-              <div class="flex items-center gap-2"><i data-lucide="mail"></i><a id="contact-email" href="mailto:your.email@example.com" class="underline">your.email@example.com</a> <button id="copy-email" class="ml-2 text-sm text-accent">Copy</button></div>
-              <div class="flex items-center gap-2"><i data-lucide="github"></i><a href="https://github.com/enoysx" target="_blank">github.com/enoysx</a></div>
-              <div class="flex items-center gap-2"><i data-lucide="linkedin"></i><a href="https://id.linkedin.com/in/dandy-syahputra-08984a207" target="_blank">LinkedIn</a></div>
-              <div class="flex items-center gap-2"><i data-lucide="map-pin"></i><span>Indonesia</span></div>
+          <div class="tech-stack-section">
+            <h3>Traditional Stack</h3>
+            <div class="tech-grid animate-stagger" id="tech-grid">
+              <!-- Filled by JavaScript -->
             </div>
           </div>
-          <div data-aos="fade-left">
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="space-y-4">
-              <div>
-                <label class="block text-sm mb-1">Name</label>
-                <input name="name" required class="w-full p-3 rounded bg-white/5 border border-white/6 focus:outline-none focus:border-primary-500 transition" />
-              </div>
-              <div>
-                <label class="block text-sm mb-1">Email</label>
-                <input type="email" name="email" required class="w-full p-3 rounded bg-white/5 border border-white/6 focus:outline-none focus:border-primary-500 transition" />
-              </div>
-              <div>
-                <label class="block text-sm mb-1">Subject</label>
-                <input name="subject" class="w-full p-3 rounded bg-white/5 border border-white/6 focus:outline-none focus:border-primary-500 transition" />
-              </div>
-              <div>
-                <label class="block text-sm mb-1">Message</label>
-                <textarea name="message" rows="5" required class="w-full p-3 rounded bg-white/5 border border-white/6 focus:outline-none focus:border-primary-500 transition"></textarea>
-              </div>
-              <div class="text-right">
-                <button type="submit" class="px-6 py-2 rounded bg-primary-500 text-neutral-900 font-medium hover:scale-105 transition">Send Message</button>
-              </div>
-            </form>
+        </div>
+      </section>
+
+      <!-- Experience Section -->
+      <section id="experience">
+        <div class="container">
+          <div class="experience-header">
+            <span class="eyebrow">Experience</span>
+            <h2>Professional Journey</h2>
+          </div>
+          <div class="timeline" id="experience-list">
+            <!-- Filled by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Projects Section -->
+      <section id="projects">
+        <div class="container">
+          <div class="projects-header">
+            <span class="eyebrow">Portfolio</span>
+            <h2>Featured Projects</h2>
+          </div>
+          <div class="project-filters" id="project-filters">
+            <!-- Filled by JavaScript -->
+          </div>
+          <div class="projects-grid" id="projects-grid">
+            <!-- Filled by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section id="contact">
+        <div class="container">
+          <div class="contact-header">
+            <span class="eyebrow">Contact</span>
+            <h2>Let's Build Something Together</h2>
+            <p class="contact-subtext">Have a project in mind? I'm always open to discussing new ideas and opportunities.</p>
+          </div>
+          <div class="contact-methods">
+            <div class="contact-method">
+              <svg class="contact-method-icon" data-lucide="mail" width="24" height="24"></svg>
+              <a id="contact-email" href="mailto:dandy.syahputra.work@gmail.com">dandy.syahputra.work@gmail.com</a>
+            </div>
+            <div class="contact-method">
+              <svg class="contact-method-icon" data-lucide="github" width="24" height="24"></svg>
+              <a href="https://github.com/enoysx" target="_blank" rel="noopener">GitHub</a>
+            </div>
+            <div class="contact-method">
+              <svg class="contact-method-icon" data-lucide="linkedin" width="24" height="24"></svg>
+              <a href="https://id.linkedin.com/in/dandy-syahputra-08984a207" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="py-8 text-center text-sm text-neutral-400">
+    <!-- Footer -->
+    <footer>
       <div class="container">
-        <p>© 2026 Dandy Syahputra • Built with HTML, Tailwind, Vanilla JS</p>
-        <button id="back-to-top" class="fixed bottom-6 right-6 p-3 bg-primary-500 rounded-full shadow-lg hidden"><i data-lucide="arrow-up"></i></button>
+        <div class="footer-content">
+          <div>
+            <p class="footer-copyright">© 2026 Dandy Syahputra. Built with vibe.</p>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/enoysx" target="_blank" rel="noopener" aria-label="GitHub">
+              <svg data-lucide="github" width="24" height="24"></svg>
+            </a>
+            <a href="https://id.linkedin.com/in/dandy-syahputra-08984a207" target="_blank" rel="noopener" aria-label="LinkedIn">
+              <svg data-lucide="linkedin" width="24" height="24"></svg>
+            </a>
+            <a href="https://twitter.com/CppUo_" target="_blank" rel="noopener" aria-label="Twitter">
+              <svg data-lucide="twitter" width="24" height="24"></svg>
+            </a>
+          </div>
+        </div>
       </div>
     </footer>
 
-    <!-- Data and Scripts -->
+    <!-- Scripts -->
     <script src="/assets/js/data.js" defer></script>
-    <script src="/assets/js/main.js" type="module" defer></script>
-    <script src="/assets/js/vibe-animations.js" type="module" defer></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="/assets/js/main.js" defer></script>
     <script>
-      document.addEventListener('DOMContentLoaded', () => AOS.init({ once: true,duration:700 }));
+      // Initialize Lucide Icons
+      document.addEventListener('DOMContentLoaded', () => {
+        lucide.replace();
+      });
     </script>
   </body>
 </html>
