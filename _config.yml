@@ -1,0 +1,25 @@
+# _config.yml
+# Basic configuration for Jekyll site
+
+title: "Dandy Syahputra Portfolio"
+email: ""
+description: "Reporting, Analysis & Data Visualization Specialist"
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://dandysyahputra.github.io" # the base hostname & protocol for your site
+
+# Build settings
+markdown: kramdown
+# theme removed to use custom layouts/assets
+plugins: []
+
+# Collections, optionally
+
+# Permalinks
+permalink: /:title/
+
+# Exclude from build
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - node_modules

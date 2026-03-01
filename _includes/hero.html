@@ -1,0 +1,27 @@
+{% comment %}
+  hero.html
+
+  DESCRIPTION:
+  Hero section with introduction, CTA buttons, and social links.
+
+  USAGE:
+  {% include hero.html %}
+
+{% endcomment %}
+
+<section id="hero" class="section hero-section text-center">
+  <div class="container">
+    <h1 class="display-4">Dandy Syahputra</h1>
+    <p class="lead">Reporting, Analysis &amp; Data Visualization Specialist</p>
+    <p>Transforming complex data into actionable insights &amp; compelling visual designs</p>
+    <div class="mt-3">
+      <a href="#portfolio" class="btn btn-primary me-2">View Portfolio</a>
+      <a href="{{ '/resume.html' | relative_url }}" class="btn btn-outline-primary">Download Resume</a>
+    </div>
+    <div class="social mt-4">
+      <a href="https://www.linkedin.com/in/dandy-syahputra-08984a207/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin fa-lg"></i></a>
+      <a href="https://github.com/dandysyahputra" target="_blank" title="GitHub"><i class="fab fa-github fa-lg"></i></a>
+      <a href="mailto:dandy.syahputra@example.com" title="Email"><i class="fas fa-envelope fa-lg"></i></a>
+    </div>
+  </div>
+</section>

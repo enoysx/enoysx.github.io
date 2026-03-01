@@ -1,0 +1,17 @@
+{% comment %}
+  footer.html
+
+  DESCRIPTION:
+  Site footer with copyright and minimal links.
+
+  USAGE:
+  {% include footer.html %}
+
+{% endcomment %}
+
+<footer class="site-footer bg-dark text-light py-4">
+  <div class="container text-center">
+    <p>&copy; {{ site.time | date: "%Y" }} Dandy Syahputra. All rights reserved.</p>
+    <p><a href="{{ '/resume.html' | relative_url }}" class="text-light">Download Resume</a></p>
+  </div>
+</footer>

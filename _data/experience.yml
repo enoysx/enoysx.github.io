@@ -1,0 +1,23 @@
+# _data/experience.yml
+# Professional timeline data for the Experience section
+
+experiences:
+  - company: "PT. Tirta Varia Inti Pratama"
+    position: "Reporting & Data Analysis Staff"
+    period: "2022 - Present"
+    location: "Jakarta, Indonesia"
+    description: "Responsible for data management, reporting, and visualization to support business decisions."
+    achievements:
+      - "Developed automated reporting system reducing manual work by 40%"
+      - "Created dashboard for executive decision making"
+      - "Managed data visualization for monthly performance reports"
+
+  - company: "Freelance Graphic Designer"
+    position: "Freelance Graphic Designer"
+    period: "2020 - Present"
+    location: "Remote"
+    description: "Providing graphic design services for various clients including branding, social media, and marketing materials."
+    achievements:
+      - "Branding projects for small businesses"
+      - "Social media campaigns design"
+      - "Print marketing materials"
